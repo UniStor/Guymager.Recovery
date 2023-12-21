@@ -1,0 +1,5 @@
+- hosts: node #localhost
+  vars:
+    foo: "bar"
+  roles:
+  - Guymager

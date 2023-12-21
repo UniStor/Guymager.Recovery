@@ -1,0 +1,22 @@
+---
+# Fedora package: https://forensics.cert.org/
+
+- name: Import GPG key
+  ansible.builtin.rpm_key:
+    state: present
+    key: https://forensics.cert.org/forensics.asc
+  become: true
+
+- name: Add repo cert-forensics-tools
+  become: true
+  ansible.builtin.dnf:
+    name: "https://forensics.cert.org/cert-forensics-tools-release-{{ ansible_distribution_major_version }}.rpm"
+    state: latest
+
+- name: Install Guymager & Advanced Forensic Format
+  become: true
+  ansible.builtin.dnf:
+    name:
+      - guymager
+      - afftools
+    state: latest
